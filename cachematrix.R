@@ -13,6 +13,8 @@
 
 makeCacheMatrix <- function(x = matrix()) {
    i <- NULL
+
+   # Reset matrix and assign a new matrix.
    set <- function(y) {
       x <<- y
       i <<- NULL
@@ -34,12 +36,12 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
    ## Return a matrix that is the inverse of 'x'
    invrs <- x$getinverse()
-   if(!is.null(invrs)) {
-      message("getting cached data")
+   if(!is.null(invrs)) {              # If same matrix was used before
+      message("getting cached data")  # get the cached result
       return(invrs)
    }
    m <- x$get()
-   invrs <- solve(m, ...)
+   invrs <- solve(m, ...)             # Inverse of matrix
    x$setinverse(invrs)
-   invrs
+   invrs                              # Print inverse matrix
 }
